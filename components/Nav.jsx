@@ -37,7 +37,7 @@ const Nav = () => {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className='sm:flex justify-between position:relative left=0'>
+      <div className='sm:flex justify-in_between position:relative left=0 items-left'>
         {true ? (
           <div className='flex gap-3 md:gap-5 justifyContent:flex-end alignItems:flex-end alignContent: flex-end position absolute'>
           

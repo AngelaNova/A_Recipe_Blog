@@ -1,6 +1,25 @@
+import React, { useState } from "react";
 import Link from "next/link";
 
 const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
+  const [inputError, setInputError] = useState(false);
+
+  const handleChange = (e) => {
+    const inputValue = e.target.value;
+    const totalCharacters = inputValue.replace(/\s/g, '').length;
+    const specialCharacters = inputValue.replace(/[\w\s]/g, '').length;
+
+    if (totalCharacters >= 30 && specialCharacters >= totalCharacters / 2) {
+      setInputError(true);
+    } else {
+      setInputError(false);
+    }
+
+    setPost({ ...post, prompt: inputValue });
+  };
+
+  const remainingCharacters = Math.max(30 - post.prompt.replace(/\s/g, '').length, 0);
+
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
@@ -22,11 +41,17 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
           <textarea
             value={post.prompt}
-            onChange={(e) => setPost({ ...post, prompt: e.target.value })}
+            onChange={handleChange}
             placeholder='Write your post here'
             required
             className='form_textarea '
           />
+          {!inputError && remainingCharacters > 0 && (
+            <span className="text-xs text-gray-500">You must write at least another {remainingCharacters} character</span>
+          )}
+          {inputError && (
+            <span className="text-xs text-gray-500">You have too many special characters.</span>
+          )}
         </label>
 
         <label>
@@ -53,8 +78,10 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
 
           <button
             type='submit'
-            disabled={submitting}
-            className='px-5 py-1.5 text-sm bg-primary-orange rounded-full text-white'
+            disabled={submitting || inputError || remainingCharacters > 0}
+            className={`px-5 py-1.5 text-sm ${
+              (inputError || remainingCharacters > 0) ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-orange'
+            } rounded-full text-white`}
           >
             {submitting ? `${type}ing...` : type}
           </button>
