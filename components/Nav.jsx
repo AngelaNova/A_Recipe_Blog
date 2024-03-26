@@ -1,14 +1,15 @@
 "use client";
 
-import Link from 'next/link';
-import Image from 'next/image'
-import {useState, useEffect} from 'react';
-import {signIn, signOut, useSession, getProviders} from 'next-auth/react';
+import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
-  const isUserLoggedIn = true;
+  const { data: session } = useSession();
+
   const [providers, setProviders] = useState(null);
-  const [toggleDropdown, setToggleDropdown] = useState(false);
+  const [toggleDropdown, setToggleDropdown] = useState(true);
 
   useEffect(() => {
     (async () => {
@@ -18,8 +19,13 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'>
-      <Link href='/' className='flex gap-2 flex-center'>
+    <nav className='flex-between w-full mb-16 pt-3'
+      position='absolute'
+      top='70px' 
+      right='0px'
+    >
+
+      <Link href='./' className='flex gap-2 flex-center l'>
         <Image
           src='/assets/images/logo.svg'
           alt='logo'
@@ -31,9 +37,10 @@ const Nav = () => {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className='sm:flex hidden'>
-        {isUserLoggedIn? (
-          <div className='flex gap-3 md:gap-5'>
+      <div className='sm:flex justify-between position:relative left=0'>
+        {true ? (
+          <div className='flex gap-3 md:gap-5 justifyContent:flex-end alignItems:flex-end alignContent: flex-end position absolute'>
+          
             <Link href='/create-prompt' className='black_btn'>
               Create Post
             </Link>
@@ -44,7 +51,7 @@ const Nav = () => {
 
             <Link href='/profile'>
               <Image
-                src="/assets/images/logo.svg"
+                src="/assets/images/Channel_Pic-Angela.jpg"
                 width={37}
                 height={37}
                 className='rounded-full'
@@ -72,11 +79,11 @@ const Nav = () => {
       </div>
 
       {/* Mobile Navigation */}
-      <div className='sm:hidden flex relative'>
-        {isUserLoggedIn ? (
+      <div className='sm:flex relative'>
+        {session?.user ? (
           <div className='flex'>
             <Image
-              src="/assets/images/logo.svg"
+              src={session?.user.image}
               width={37}
               height={37}
               className='rounded-full'
