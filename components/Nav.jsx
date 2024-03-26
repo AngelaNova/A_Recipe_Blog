@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
+
+
 const Nav = () => {
   const { data: session } = useSession();
 
@@ -37,15 +39,15 @@ const Nav = () => {
       </Link>
 
       {/* Desktop Navigation */}
-      <div className='sm:flex justify-in_between position:relative left=0 items-left'>
+      <div className='sm:flex justify-in_between position:relative left-0 items-left'>
         {true ? (
-          <div className='flex gap-3 md:gap-5 justifyContent:flex-end alignItems:flex-end alignContent: flex-end position absolute'>
+          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
           
             <Link href='/create-prompt' className='black_btn'>
               Create Post
             </Link>
 
-            <button type='button' onClick={signOut} className='outline_btn'>
+            <button type='button' onClick={() => signOut('google')} className='outline_btn'>
               Sign Out
             </button>
 
@@ -66,9 +68,7 @@ const Nav = () => {
                 <button
                   type='button'
                   key={provider.name}
-                  onClick={() => {
-                    signIn(provider.id);
-                  }}
+                  onClick={() => signIn('google')}
                   className='black_btn'
                 >
                   Sign in
