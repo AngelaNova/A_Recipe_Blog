@@ -5,12 +5,16 @@ const Home = () => (
     <h1 className='head_text text-center'>
       Discover & Share
       <br className='max-md:hidden' />
-      <span className='orange_gradient text-center'> AI-Powered Prompts</span>
+      <span style={{color:'orange', fontSize:'75%'}} className='text-center'> The Best Recipes</span>
     </h1>
-    <p className='desc text-center'>
-      Promptopia is an open-source AI prompting tool for modern world to
-      discover, create and share creative prompts
-    </p>
+    <div style={{paddingLeft:'280px',
+                paddingRight:'280px',
+                marginBottom:'-40px'
+        }}>
+      <p className='desc text-center'>
+        Orange Blog is a platform for culinary enthusiasts to explore, craft, and exchange inventive cooking and baking recipes.
+      </p>
+    </div>
 
     <Feed />
   </section>
