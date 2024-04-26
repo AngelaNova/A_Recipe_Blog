@@ -8,11 +8,11 @@ const Home = () => {
         <br className="max-mid:hidden"
         />
         <span className="orange_gradient">
-          AI-Powered Prompts
+          Best Recipes at Orange Blog
         </span>
       </h1>
       <p className='desc text-center'>
-        Promptopia is an open-source AI prompting tool for modern world to
+      Orange Blog is an recipe sharing tool for modern world to
         discover, create and share creative prompts
       </p>
 
