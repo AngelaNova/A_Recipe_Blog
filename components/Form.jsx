@@ -23,11 +23,13 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
   return (
     <section className='w-full max-w-full flex-start flex-col'>
       <h1 className='head_text text-left'>
-        <span className='blue_gradient'>{type} Post</span>
+        <span className='orange'>{type} Post</span>
       </h1>
       <p className='desc text-left max-w-md'>
-        {type} and share amazing prompts with the world, and let your
-        imagination run wild with any AI-powered platform
+        <br/>
+        Join the flavorful discovery journey! Share your best recipes or inventive cooking ideas with the world! <br/> <br/>
+        Don't hold back – let your imagination sizzle! &#x1F525;
+
       </p>
 
       <form
@@ -36,7 +38,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
       >
         <label>
           <span className='font-satoshi font-semibold text-base text-gray-700'>
-            Your AI Prompt
+            Your Delicious Prompt
           </span>
 
           <textarea
@@ -58,7 +60,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
           <span className='font-satoshi font-semibold text-base text-gray-700'>
             Field of Prompt{" "}
             <span className='font-normal'>
-              (#product, #webdevelopment, #idea, etc.)
+              (#Mochi, #Paella, #Dessert, etc.)
             </span>
           </span>
           <input
