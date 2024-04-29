@@ -1,15 +1,11 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { signIn, signOut, useSession, getProviders }from "next-auth/react";
-
-
+import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
   const { data: session } = useSession();
-
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(true);
 
@@ -21,12 +17,7 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className='flex-between w-full mb-16 pt-3'
-      position='absolute'
-      top='70px' 
-      right='0px'
-    >
-
+    <nav className='flex-between w-full mb-16 pt-3' position='absolute' top='70px' right='0px'>
       <Link href='./' className='flex gap-2 flex-center l'>
         <Image
           src='/assets/images/logo.png'
@@ -40,20 +31,38 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {true ? (
+        {!session && providers && (
           <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
-          
+            {Object.values(providers).map((provider) => (
+              <button
+                type='button'
+                key={provider.name}
+                onClick={() => signIn(provider.id)}
+                className='black_btn'
+              >
+                Sign in with {provider.name}
+              </button>
+            ))}
+          </div>
+        )}
+
+        {session && (
+          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
             </Link>
 
-            <button type='button' onClick={() => signOut('google')} className='outline_btn'>
+            <button
+              type='button'
+              onClick={() => signOut('google')}
+              className='outline_btn'
+            >
               Sign Out
             </button>
 
             <Link href='/profile'>
               <Image
-                src="/assets/images/Channel_Pic-Angela.jpg"
+                src='/assets/images/Channel_Pic-Angela.jpg'
                 width={37}
                 height={37}
                 className='rounded-full'
@@ -61,26 +70,12 @@ const Nav = () => {
               />
             </Link>
           </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type='button'
-                  key={provider.name}
-                  onClick={() => signIn('google')}
-                  className='black_btn'
-                >
-                  Sign in
-                </button>
-              ))}
-          </>
         )}
       </div>
 
       {/* Mobile Navigation */}
       <div className='sm:flex relative'>
-        {session?.user ? (
+        {session?.user && (
           <div className='flex'>
             <Image
               src={session?.user.image}
@@ -120,22 +115,21 @@ const Nav = () => {
               </div>
             )}
           </div>
-        ) : (
-          <>
-            {providers &&
-              Object.values(providers).map((provider) => (
-                <button
-                  type='button'
-                  key={provider.name}
-                  onClick={() => {
-                    signIn(provider.id);
-                  }}
-                  className='black_btn'
-                >
-                  Sign in
-                </button>
-              ))}
-          </>
+        )}
+
+        {!session && providers && (
+          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
+            {Object.values(providers).map((provider) => (
+              <button
+                type='button'
+                key={provider.name}
+                onClick={() => signIn(provider.id)}
+                className='black_btn'
+              >
+                Sign in with {provider.name}
+              </button>
+            ))}
+          </div>
         )}
       </div>
     </nav>
