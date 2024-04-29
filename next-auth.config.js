@@ -9,5 +9,5 @@ export default {
     }),
     // Add other providers as needed
   ],
-  // Add additional configuration options as needed
+  
 };
