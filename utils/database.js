@@ -1,26 +1,47 @@
 import mongoose from 'mongoose';
+import winston from 'winston';
+
+const logger = winston.createLogger({
+  transports: [
+    new winston.transports.Console({
+      format: winston.format.combine(
+        winston.format.timestamp(),
+        winston.format.colorize(),
+        winston.format.simple()
+      )
+    })
+  ]
+});
 
 let isConnected = false; // track the connection
 
 export const connectToDB = async () => {
+  const mongoURI = process.env.MONGODB_URI;
+
+  if (!mongoURI) {
+    logger.error('MongoDB URI not provided');
+    throw new Error('MongoDB URI not provided');
+  }
+
   mongoose.set('strictQuery', true);
 
-  if(isConnected) {
-    console.log('MongoDB is already connected');
+  if (isConnected) {
+    logger.info('MongoDB is already connected');
     return;
   }
 
   try {
-    await mongoose.connect(process.env.MONGODB_URI, {
+    await mongoose.connect(mongoURI, {
       dbName: "share_prompt",
       useNewUrlParser: true,
       useUnifiedTopology: true,
-    })
+    });
 
     isConnected = true;
 
-    console.log('MongoDB connected')
+    logger.info('MongoDB connected');
   } catch (error) {
-    console.log(error);
+    logger.error('Failed to connect to MongoDB:', error);
+    throw error; // Rethrow the error to indicate connection failure
   }
-}
+};
