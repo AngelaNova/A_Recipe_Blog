@@ -1,6 +1,7 @@
 import '@styles/globals.css';
 import Nav from "@components/Nav";
 import Provider from '@components/Provider';
+import Footer from '@components/Footer';
 
 export const metadata ={
   title: "A Recipe Blog",
@@ -19,8 +20,8 @@ const RootLayout = ({children}) => {
           <main className="app">
             <Nav/>
             {children}
-            <h6> Copyright © 2024 Angela Novakovic - All Rights Reserved </h6>
           </main>
+          <Footer/>
         </Provider>
       </body>
     </html>
