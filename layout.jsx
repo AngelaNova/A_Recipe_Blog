@@ -19,6 +19,7 @@ const RootLayout = ({children}) => {
           <main className="app">
             <Nav/>
             {children}
+            <h6> Copyright © 2024 Angela Novakovic - All Rights Reserved </h6>
           </main>
         </Provider>
       </body>
