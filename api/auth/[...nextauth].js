@@ -1,6 +1,6 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import config from '../../../next-auth.config';
+import config from '../next-auth.config';
 
 export default NextAuth({
   ...config,
