@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -32,21 +33,19 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {!session && providers && (
-          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
-            {Object.values(providers).map((provider) => (
-              <button
-                type='button'
-                key={provider.name}
-                onClick={() => signIn(provider.id)}
-                className='black_btn'
-              >
-                Sign in with {provider.name}
-              </button>
-            ))}
-          </div>
-        )}
+        {/* Sign In button always shown */}
+        <div className='flex md:gap-5 justify-end items-center'>
+          <button
+            type='button'
+            onClick={() => signIn('google')}
+            className='black_btn position absolute right-40'
+          >
+            Sign in
+          </button>
+        </div>
 
+
+        {/* Display other options if signed in */}
         {session && (
           <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
             <Link href='/create-prompt' className='black_btn'>
@@ -55,7 +54,7 @@ const Nav = () => {
 
             <button
               type='button'
-              onClick={() => signOut('google')}
+              onClick={() => signOut()}
               className='outline_btn'
             >
               Sign Out
@@ -76,6 +75,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       <div className='sm:flex relative'>
+        {/* Display profile picture and dropdown if signed in */}
         {session?.user && (
           <div className='flex'>
             <Image
@@ -115,21 +115,6 @@ const Nav = () => {
                 </button>
               </div>
             )}
-          </div>
-        )}
-
-        {!session && providers && (
-          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
-            {Object.values(providers).map((provider) => (
-              <button
-                type='button'
-                key={provider.name}
-                onClick={() => signIn(provider.id)}
-                className='black_btn'
-              >
-                Sign in with {provider.name}
-              </button>
-            ))}
           </div>
         )}
       </div>
