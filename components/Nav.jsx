@@ -11,7 +11,7 @@ const Nav = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await getProviders();
+      const res = await getProviders({ baseUrl: '/app' });
       console.log(res);
       setProviders(res);
     })();
