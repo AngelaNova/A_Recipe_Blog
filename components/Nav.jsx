@@ -35,6 +35,7 @@ const Nav = () => {
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
         {/* Sign In button always shown */}
         <div className='flex md:gap-5 justify-end items-center'>
+          {/* There seems to be an issue here with the google authentification of way it is linked to the app */}
           <button
             type='button'
             onClick={() => signIn('google')}
