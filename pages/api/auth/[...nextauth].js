@@ -3,10 +3,7 @@ import GoogleProvider from 'next-auth/providers/google';
 import GithubProvider from "next-auth/providers/github"
 
 
-import config from '../next-auth.config';
-
-export default NextAuth({
-  ...config,
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -18,4 +15,6 @@ export default NextAuth({
     }),
     // Add other providers here
   ],
-});
+};
+
+export default NextAuth(authOptions);
