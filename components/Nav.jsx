@@ -37,7 +37,7 @@ const Nav = () => {
           <div className='flex md:gap-5 justify-end items-center'>
             <button
               type='button'
-              onClick={() => signIn('google')}
+              onClick={() => signIn('google', { callbackUrl: '/' })}
               className='black_btn position absolute right-40'
             >
               Sign in
