@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -33,21 +32,18 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {/* Sign In button always shown */}
-        <div className='flex md:gap-5 justify-end items-center'>
-          {/* There seems to be an issue here with the google authentification of way it is linked to the app */}
-          <button
-            type='button'
-            onClick={() => signIn('google')}
-            className='black_btn position absolute right-40'
-          >
-            Sign in
-          </button>
-        </div>
-
-
-        {/* Display other options if signed in */}
-        {session && (
+        {/* Sign In button or profile picture */}
+        {!session ? (
+          <div className='flex md:gap-5 justify-end items-center'>
+            <button
+              type='button'
+              onClick={() => signIn('google')}
+              className='black_btn position absolute right-40'
+            >
+              Sign in
+            </button>
+          </div>
+        ) : (
           <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
