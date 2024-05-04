@@ -21,7 +21,7 @@ const RootLayout = ({children}) => {
             <Nav/>
             {children}
           </main>
-          <Footer/>
+          <Footer year={2024}/>
         </Provider>
       </body>
     </html>

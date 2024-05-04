@@ -1,8 +1,8 @@
 
-const Footer = () => {
+const Footer = ({year}) => {
   return (
     <footer style={{color:"darkorange"}}>
-      <h5>Copyright © 2024 Angela Novakovic - All Rights Reserved</h5>
+      <h5>Copyright © {year} Angela Novakovic - All Rights Reserved</h5>
     </footer>
   );
 };
