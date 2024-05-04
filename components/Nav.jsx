@@ -32,7 +32,7 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {/* Sign In button or profile picture */}
+        {/* Sign In button or Sign out button and profile picture from google */}
         {!session ? (
           <div className='flex md:gap-5 justify-end items-center'>
             <button
@@ -57,6 +57,7 @@ const Nav = () => {
               Sign Out
             </button>
 
+            {/*
             <Link href='/profile'>
               <Image
                 src='/assets/images/Channel_Pic-Angela.jpg'
@@ -66,6 +67,14 @@ const Nav = () => {
                 alt='profile'
               />
             </Link>
+            */}
+            <Image
+              src={session?.user.image}
+              width={37}
+              height={37}
+              className='rounded-full'
+              alt='profile'
+            />
           </div>
         )}
       </div>
@@ -75,14 +84,7 @@ const Nav = () => {
         {/* Display profile picture and dropdown if signed in */}
         {session?.user && (
           <div className='flex'>
-            <Image
-              src={session?.user.image}
-              width={37}
-              height={37}
-              className='rounded-full'
-              alt='profile'
-              onClick={() => setToggleDropdown(!toggleDropdown)}
-            />
+            
 
             {toggleDropdown && (
               <div className='dropdown'>
