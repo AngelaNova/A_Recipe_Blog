@@ -37,7 +37,7 @@ const Nav = () => {
           <div className='flex md:gap-5 justify-end items-center'>
             <button
               type='button'
-              onClick={() => signIn('google', { callbackUrl: '/' })}
+              onClick={() => signIn('google')}
               className='black_btn position absolute right-40'
             >
               Sign in
@@ -74,6 +74,7 @@ const Nav = () => {
               height={37}
               className='rounded-full'
               alt='profile'
+
             />
           </div>
         )}
