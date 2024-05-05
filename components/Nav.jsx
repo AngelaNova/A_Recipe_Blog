@@ -58,25 +58,19 @@ const Nav = () => {
               Sign Out
             </button>
 
-            {/*
+            
             <Link href='/profile'>
               <Image
-                src='/assets/images/Channel_Pic-Angela.jpg'
-                width={37}
-                height={37}
-                className='rounded-full'
-                alt='profile'
-              />
-            </Link>
-            */}
-            <Image
               src={session?.user.image}
               width={37}
               height={37}
               className='rounded-full'
               alt='profile'
-
             />
+            </Link>
+          
+
+            
           </div>
         )}
       </div>
