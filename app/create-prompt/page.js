@@ -39,7 +39,7 @@ const CreatePrompt = () => {
 
   return (
     <Form
-      type='Create'
+      type='Create' // TODO : Createing is shown in the button - updated the button in forms or similar file
       post={post}
       setPost={setPost}
       submitting={submitting}
