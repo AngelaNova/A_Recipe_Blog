@@ -34,7 +34,7 @@ const Nav = () => {
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
         {/* Sign In button or Sign out button and profile picture from google */}
-        {session ? (
+        {session?.user ? (
           <div className='flex md:gap-5 justify-end items-center'>
             <button
               type='button'
@@ -78,7 +78,7 @@ const Nav = () => {
       {/* Mobile Navigation */}
       <div className='sm:flex relative'>
         {/* Display profile picture and dropdown if signed in */}
-        {session   && (
+        {session?.user   && (
           <div className='flex'>
             
 
