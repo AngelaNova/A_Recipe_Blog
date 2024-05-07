@@ -14,6 +14,7 @@ const Nav = () => {
       const res = await getProviders({ baseUrl: '/app' });
       console.log(res);
       setProviders(res);
+      console.log(setProviders(res));
     })();
   }, []);
 
