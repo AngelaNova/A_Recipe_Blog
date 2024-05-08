@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 let isConnected = false; // track the connection
 
+
 export const connectToDB = async () => {
   const mongoURI = process.env.MONGODB_URI;
 
