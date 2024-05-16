@@ -20,7 +20,7 @@ const Nav = () => {
   return (
     <nav className='flex-between w-full mb-16 pt-3' position='absolute' top='70px' right='0px'>
       <Link href='./' className='flex gap-2 flex-center l'>
-        //logo + name of the website
+        {/* logo + name of the website*/}
         <Image
           src='/assets/images/logo.png'
           alt='Orange Blog logo'
