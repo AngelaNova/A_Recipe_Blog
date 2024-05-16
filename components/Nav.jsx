@@ -33,8 +33,8 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {/* Sign In button or Sign out button and profile picture from google */}
-        {session ? (
+        {/* Sign In button if the session is a falsy value*/}
+        {!session ? (
           <div className='flex md:gap-5 justify-end items-center'>
             <button
               type='button'
