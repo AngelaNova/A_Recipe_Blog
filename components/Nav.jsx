@@ -45,7 +45,7 @@ const Nav = () => {
             </button>
           </div>
         ) : (
-          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute'>
+          <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute mt-[-3vh]'>
             <Link href='/create-prompt' className='black_btn'>
               Create Post
             </Link>
