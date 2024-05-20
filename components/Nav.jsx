@@ -16,6 +16,7 @@ const Nav = () => {
     })();
   }, []);
 
+  //page shows logout first, however, the signIn doesn't seem to work the right way 
   
   return (
     <nav className='flex-between w-full mb-16 pt-3 mt-5 align-items'>
