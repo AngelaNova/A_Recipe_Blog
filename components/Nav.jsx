@@ -10,7 +10,7 @@ const Nav = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
@@ -19,16 +19,9 @@ const Nav = () => {
     })();
   }, []);
 
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const handleSignOut = async () => {
     await signOut({ redirect: false });
-    if (isMounted) {
-      const router = useRouter();
-      router.push('/');
-    }
+    router.push('/');
   };
 
   //page shows logout first, however, the signIn doesn't seem to work the right way 
