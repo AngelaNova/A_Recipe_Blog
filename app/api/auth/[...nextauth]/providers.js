@@ -41,6 +41,11 @@ const handler = NextAuth({
         return false;
       }
     },
+    async signOut({ token, session }) {
+      // Custom signOut logic if necessary
+      console.log(`User with token ${token} and session ${session} signed out`);
+      // Additional clean-up tasks can be added here
+    },
   },
   secret: process.env.SECRET,
 });
