@@ -3,18 +3,25 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import {useRouter} from "next/router";
 
 const Nav = () => {
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
+  const router = useRouter();
 
   useEffect(() => {
     (async () => {
-      const res = await getProviders({ baseUrl: '/app' });
+      const res = await getProviders();
       setProviders(res);
     })();
   }, []);
+
+  const handleSignOut = async () => {
+    await signOut({ redirect: false});
+    router.push('/');
+  };
 
   //page shows logout first, however, the signIn doesn't seem to work the right way 
   //it automatically logs me into my account that I have signed in google via OAuth 2 - it seems that my account is somehow saved, but no other things can be done
@@ -54,7 +61,7 @@ const Nav = () => {
 
             <button
               type='button'
-              onClick={() => signOut()}
+              onClick={handleSignOut}
               className='outline_btn'
             >
               Sign Out
@@ -103,7 +110,7 @@ const Nav = () => {
                   type='button'
                   onClick={() => {
                     setToggleDropdown(false);
-                    signOut();
+                    handleSignOut();
                   }}
                   className='mt-5 w-full black_btn'
                 >
