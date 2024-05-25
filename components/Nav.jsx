@@ -6,7 +6,7 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 
 const Nav = () => {
   const { data: session } = useSession();
-  const [setProviders] = useState(null);
+  const [providers, setProviders] = useState(null);
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Nav = () => {
           <div className='flex md:gap-5 justify-end items-center'>
             <button
               type='button'
-              onClick={() => signIn('google')}
+              onClick={() => signIn(providers ? providers.google.id : null)}
               className='black_btn position absolute right-40'
             >
               Sign in
