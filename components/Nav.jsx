@@ -17,8 +17,7 @@ const Nav = () => {
   }, []);
 
   //page shows logout first, however, the signIn doesn't seem to work the right way 
-  //it automatically logs me into my account that I have signed in google via OAuth 2 
-  //it seems that my account is somehow saved, but no other things can be done
+  //it automatically logs me into my account that I have signed in google via OAuth 2 - it seems that my account is somehow saved, but no other things can be done
   
   return (
     <nav className='flex-between w-full mb-16 pt-3 mt-5 align-items'>
