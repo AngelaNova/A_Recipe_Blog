@@ -11,6 +11,11 @@ export const authOptions = {
     // Add other providers here
   ],
   secret: process.env.SECRET,
+  callbacks:{
+    async signOut({token, session}){
+      //signout
+    },
+  },
 };
 
 const handler = NextAuth(authOptions);
