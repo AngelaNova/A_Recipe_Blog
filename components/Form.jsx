@@ -9,7 +9,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
     const totalCharacters = inputValue.replace(/\s/g, '').length;
     const specialCharacters = inputValue.replace(/[\w\s]/g, '').length;
 
-    if (totalCharacters >= 30 && specialCharacters >= totalCharacters / 2) {
+    if (totalCharacters >= 30 && specialCharacters >= totalCharacters / 3) {
       setInputError(true);
     } else {
       setInputError(false);
@@ -85,7 +85,7 @@ const Form = ({ type, post, setPost, submitting, handleSubmit }) => {
               (inputError || remainingCharacters > 0) ? 'bg-gray-400 cursor-not-allowed' : 'bg-primary-orange'
             } rounded-full text-white`}
           >
-            {submitting ? `${type}ing...` : type}
+            {submitting ? `Submitting` : type}
           </button>
         </div>
       </form>
