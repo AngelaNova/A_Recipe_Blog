@@ -4,20 +4,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import {useRouter} from "next/router";
+import { getServerSession } from "next-auth";
+import { options } from "../app/api/auth/[...nextauth]/options";
 
-const Nav = () => {
-  const { data: session } = useSession();
-  const [providers, setProviders] = useState(null);
+const Nav = async() => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
-  
 
-  useEffect(() => {
-    (async () => {
-      const res = await getProviders();
-      setProviders(res);
-    })();
-  }, []);
+  const session = await getServerSession(options);
 
   const handleSignOut = async () => {
     await signOut({ redirect: false });
@@ -43,16 +36,27 @@ const Nav = () => {
 
       {/* Desktop Navigation */}
       <div className='sm:flex justify-in_between position:relative left-0 items-left'>
-        {/* Sign In button if the session is a falsy value*/}
-        {!session ? (
+        {/* Sign In button if the session is a falsy value
+        
+        {session ? (
+          <Link href="/api/auth/signout?callbackUrl=/">Logout</Link>
+        ) : (
+          <Link href="/api/auth/signin">Login</Link>
+        )}
+
+        */}
+        {session ? (
           <div className='flex md:gap-5 justify-end items-center'>
+            <Link href="/api/auth/signin">Sign in</Link>
+            {/* 
             <button
               type='button'
-              onClick={() => signIn(providers ? providers.google.id : null)}
+              onClick={() => /*signIn(providers ? providers.google.id : null)
               className='black_btn position absolute right-40'
             >
               Sign in
             </button>
+            */}
           </div>
         ) : (
           <div className='flex gap-3 md:gap-5 justify-Content:flex-end align-Items:flex-end align-Content: flex-end position absolute mt-[-3vh]'>
@@ -60,13 +64,16 @@ const Nav = () => {
               Create Post
             </Link>
 
+            <Link href="/api/auth/signout?callbackUrl=/">Sign Out</Link>
+            {/*
             <button
               type='button'
-              onClick={handleSignOut}
+              onClick={() =>  handleSignOut}
               className='outline_btn'
             >
               Sign Out
             </button>
+            */}
 
             
             <Link href='/profile'>
