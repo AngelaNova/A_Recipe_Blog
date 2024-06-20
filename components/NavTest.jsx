@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { getServerSession } from "next-auth";
-import { options } from "../api/auth/[...nextauth]/options";
+import { options } from "../app/api/auth/[...nextauth]/options";
 
-const Nav = async () => {
+const NavTest = async () => {
   const session = await getServerSession(options);
   return (
     <header className="bg-gray-600 text-gray-100">
@@ -25,4 +25,4 @@ const Nav = async () => {
   );
 };
 
-export default Nav;
+export default NavTest;
