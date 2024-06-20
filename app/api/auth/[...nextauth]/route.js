@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 
-
+//repetition -review the api route TODO
 export const authOptions = {
   providers: [
     GoogleProvider({
