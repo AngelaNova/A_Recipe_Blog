@@ -27,13 +27,9 @@ const handler = NextAuth({
       profile(profile) {
         console.log("Profile GitHub: ", profile);
 
-        let userRole = "GitHub User";
-        if (profile?.email == "angela.novakovic.SD@gmail.com") {
-          userRole = "admin";
-        }
-
         return {
           ...profile,
+          id: profile.sub,
           role: userRole,
         };
       },
