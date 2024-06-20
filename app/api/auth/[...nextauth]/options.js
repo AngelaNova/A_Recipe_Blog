@@ -5,7 +5,7 @@ import GitHubProvider from 'next-auth/providers/github';
 import User from '@models/user';
 import { connectToDB } from '@utils/database';
 
-const handler = NextAuth({
+export const options = NextAuth({
   providers: [
     GitHubProvider({
       profile(profile) {
@@ -128,5 +128,3 @@ const handler = NextAuth({
   },
   secret: process.env.SECRET,
 });
-
-export { handler as GET, handler as POST };
