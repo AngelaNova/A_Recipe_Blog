@@ -12,7 +12,7 @@ const handler = NextAuth({
         console.log("Profile GitHub: ", profile);
 
         let userRole = "GitHub User";
-        if (profile?.email == "jake@claritycoders.com") {
+        if (profile?.email == "angela.novakovic.SD@gmail.com") {
           userRole = "admin";
         }
 
@@ -24,6 +24,19 @@ const handler = NextAuth({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_Secret,}),
     GoogleProvider({
+      profile(profile) {
+        console.log("Profile GitHub: ", profile);
+
+        let userRole = "GitHub User";
+        if (profile?.email == "angela.novakovic.SD@gmail.com") {
+          userRole = "admin";
+        }
+
+        return {
+          ...profile,
+          role: userRole,
+        };
+      },
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
