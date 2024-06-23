@@ -27,6 +27,11 @@ export const options = NextAuth({
       profile(profile) {
         console.log("Profile Google: ", profile);
 
+        let userRole = "Google User";
+        if (profile?.email == "angela.novakovic.SD@gmail.com") {
+          userRole = "admin";
+        }
+        
         return {
           ...profile,
           id: profile.sub,
