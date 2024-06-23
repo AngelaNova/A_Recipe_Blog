@@ -1,9 +1,9 @@
 "use client";
-
+//we cannot use getServerSession on the client page!!!
 import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
-const Member = async () => {
+const ClientMember = async () => {
   const { data: session } = useSession({
     required: true,
     onUnauthenticated() {
@@ -20,4 +20,4 @@ const Member = async () => {
   );
 };
 
-export default Member;
+export default ClientMember;
