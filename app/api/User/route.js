@@ -32,7 +32,7 @@ export async function POST(req) {
       { message: "Success: User Created" },
       { status: 201 }
     );
-  } catch (error) {
+  } catch (err) {
     console.log(err);
     return NextResponse.json(
       {
