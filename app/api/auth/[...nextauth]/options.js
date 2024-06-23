@@ -1,11 +1,11 @@
-import NextAuth from 'next-auth';
+//import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
 import GitHubProvider from 'next-auth/providers/github';
 
-import User from '@models/user';
-import { connectToDB } from '@utils/database';
+//import User from '@models/user';
+//import { connectToDB } from '@utils/database';
 
-export const options = NextAuth({
+export const options = ({
   providers: [
     GitHubProvider({
       profile(profile) {
@@ -23,6 +23,7 @@ export const options = NextAuth({
       },
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_Secret,}),
+
     GoogleProvider({
       profile(profile) {
         console.log("Profile Google: ", profile);
@@ -41,6 +42,8 @@ export const options = NextAuth({
       clientId: process.env.GOOGLE_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
     }),
+  ],
+    /*
   ({
     name: "Credentials",
     credentials: {
@@ -81,8 +84,7 @@ export const options = NextAuth({
       }
       return null;
     },
-  })],
-  /*  might add after
+  })], */
    callbacks: {
     async jwt({ token, user }) {
       if (user) token.role = user.role;
@@ -93,8 +95,7 @@ export const options = NextAuth({
       return session;
     },
   },
-};
-*/
+/*
   callbacks: {       
     async session({ session }) {
       try {
@@ -131,5 +132,5 @@ export const options = NextAuth({
       // Additional clean-up tasks can be added here
     },
   },
-  secret: process.env.SECRET,
+  secret: process.env.SECRET,*/
 });
