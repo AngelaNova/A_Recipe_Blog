@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 const ClientMember = async () => {
   const { data: session } = useSession({
     required: true,
-    onUnauthenticated() {
+    unauthenticated: () => {
       redirect("/api/auth/signin?callbackUrl=/ClientMember");
     },
   });
