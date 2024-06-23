@@ -20,7 +20,7 @@ const UserForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrorMessage("");
-    const res = await fetch("/api/Users", {
+    const res = await fetch("/api/User", {
       method: "POST",
       body: JSON.stringify({ formData }),
       "content-type": "application/json",
