@@ -60,7 +60,7 @@ const UserForm = () => {
           type="text"
           onChange={handleChange}
           required={true}
-          value={formData.email}
+          value={formData.email.toLowerCase()}
           className="m-2 bg-slate-400 rounded"
         />
         <label>Password</label>
