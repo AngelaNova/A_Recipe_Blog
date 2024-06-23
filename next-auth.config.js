@@ -5,7 +5,7 @@ export default {
   providers: [
     Providers.Google({
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
     // Add other providers as needed
   ],
