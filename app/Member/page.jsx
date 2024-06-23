@@ -5,6 +5,7 @@ import { redirect } from "next/navigation";
 const Member = async () => {
   const session = await getServerSession(options);
 
+  //This page is only accessible for users that have logged in
   if (!session) {
     redirect("/api/auth/signin?callbackUrl=/Member");
   }
