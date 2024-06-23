@@ -4,12 +4,19 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 
 const ClientMember = async () => {
-  const { data: session } = useSession({
-    required: true,
-    unauthenticated: () => {
-      redirect("/api/auth/signin?callbackUrl=/ClientMember");
-    },
-  });
+  const { data: session, status } = useSession();
+
+  if (status === "unauthenticated") {
+    redirect("/api/auth/signin?callbackUrl=/ClientMember");
+  }
+  //{
+  //   required: true,
+  //   unauthenticated: () => {
+  //     redirect("/api/auth/signin?callbackUrl=/ClientMember");
+  //   },
+  // }
+
+  console.log({ session, status });
 
   return (
     <div>
