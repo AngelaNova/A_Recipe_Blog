@@ -19,7 +19,7 @@ export async function POST(req) {
     const duplicate = await User.findOne({ email: userData.email })
       .lean()
       .exec();
-    //this aboe works only if the email is exactly the same, thus all the email should be stored as small letters - no caps to assures that this works
+    //this above works only if the email is exactly the same, thus all the email should be stored as small letters - no caps to assures that this works
 
     if (duplicate) {
       return NextResponse.json({ message: "Duplicate Email" }, { status: 409 });
