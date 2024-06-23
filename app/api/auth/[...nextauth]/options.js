@@ -12,7 +12,7 @@ export const options = ({
         console.log("Profile GitHub: ", profile);
 
         let userRole = "GitHub User";
-        if (profile?.email == "angela.novakovic.SD@gmail.com") {
+        if (profile?.email == "angelanovakovicange2@gmail.com") {
           userRole = "admin";
         }
 
@@ -22,14 +22,14 @@ export const options = ({
         };
       },
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_Secret,}),
+      clientSecret: process.env.GITHUB_SECRET,}),
 
     GoogleProvider({
       profile(profile) {
         console.log("Profile Google: ", profile);
 
         let userRole = "Google User";
-        if (profile?.email == "angela.novakovic.SD@gmail.com") {
+        if (profile?.email == "angelanovakovicange2@gmail.com") {
           userRole = "admin";
         }
         
@@ -40,7 +40,7 @@ export const options = ({
         };
       },
       clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
     /*
@@ -131,6 +131,6 @@ export const options = ({
       console.log(`User with token ${token} and session ${session} signed out`);
       // Additional clean-up tasks can be added here
     },
-  },
-  secret: process.env.SECRET,*/
+  },*/
+  secret: process.env.SECRET,
 });
