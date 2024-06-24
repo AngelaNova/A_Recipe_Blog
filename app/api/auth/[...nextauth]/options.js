@@ -1,18 +1,18 @@
 //import NextAuth from 'next-auth';
-import GoogleProvider from 'next-auth/providers/google';
-import GitHubProvider from 'next-auth/providers/github';
+import GoogleProvider from "next-auth/providers/google";
+import GitHubProvider from "next-auth/providers/github";
 
 //import User from '@models/user';
 //import { connectToDB } from '@utils/database';
 
-export const options = ({
+export const options = {
   providers: [
     GitHubProvider({
       profile(profile) {
         console.log("Profile GitHub: ", profile);
 
         let userRole = "GitHub User";
-        if (profile?.email == 'angelanovakovicange2@gmail.com') {
+        if (profile?.email == process.env.ADMIN_EMAIL) {
           userRole = "admin";
         }
 
@@ -22,17 +22,18 @@ export const options = ({
         };
       },
       clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,}),
+      clientSecret: process.env.GITHUB_SECRET,
+    }),
 
     GoogleProvider({
       profile(profile) {
         console.log("Profile Google: ", profile);
 
         let userRole = "Google User";
-        if (profile?.email == 'angelanovakovicange2@gmail.com') {
+        if (profile?.email == process.env.ADMIN_EMAIL) {
           userRole = "admin";
         }
-        
+
         return {
           ...profile,
           id: profile.sub,
@@ -43,7 +44,7 @@ export const options = ({
       clientSecret: process.env.GOOGLE_SECRET,
     }),
   ],
-    /*
+  /*
   ({
     name: "Credentials",
     credentials: {
@@ -85,7 +86,7 @@ export const options = ({
       return null;
     },
   })], */
-   callbacks: {
+  callbacks: {
     async jwt({ token, user }) {
       if (user) token.role = user.role;
       return token;
@@ -95,7 +96,7 @@ export const options = ({
       return session;
     },
   },
-/*
+  /*
   callbacks: {       
     async session({ session }) {
       try {
@@ -133,4 +134,4 @@ export const options = ({
     },
   },*/
   secret: process.env.SECRET,
-});
+};
