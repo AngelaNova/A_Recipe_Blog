@@ -1,12 +1,22 @@
 "use client";
 
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 const UserForm = () => {
+  const { data: session, status } = useStation();
   const router = useRouter();
   const [formData, setFormData] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      router.push("/api/auth/signin?callbackUrl=/CreateUser");
+    } else if (session && session.user.role !== "admin") {
+      router.push("/denied");
+    }
+  }, [status, session, router]);
 
   const handleChange = (e) => {
     const value = e.target.value;
