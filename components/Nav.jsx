@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { options } from "../app/api/auth/[...nextauth]/options";
 
@@ -44,6 +44,7 @@ const Nav = async () => {
         )}
 
         */}
+
         {session ? (
           <div className="flex md:gap-5 justify-end items-center">
             <Link href="/api/auth/signin">Sign in</Link>
@@ -90,9 +91,9 @@ const Nav = async () => {
       {/* Mobile Navigation */}
       <div className="sm:flex relative">
         {/* Display profile picture and dropdown if signed in */}
-        {session && (
+        {toggleDropdown && (
           <div className="flex">
-            {toggleDropdown && (
+            {session ? (
               <div className="dropdown">
                 <Link
                   href="/profile"
@@ -108,17 +109,22 @@ const Nav = async () => {
                 >
                   Create Prompt
                 </Link>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setToggleDropdown(false);
-                    handleSignOut();
-                  }}
+                <Link
+                  href="/api/auth/signout?callbackUrl=/"
+                  onClick={() => setToggleDropdown(false)}
                   className="mt-5 w-full black_btn"
                 >
                   Sign Out
-                </button>
+                </Link>
               </div>
+            ) : (
+              <Link
+                href="/api/auth/signin"
+                onClick={() => setToggleDropdown(false)}
+                className="mt-5 w-full black_btn"
+              >
+                Sign In
+              </Link>
             )}
           </div>
         )}
