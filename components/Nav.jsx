@@ -2,7 +2,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { signOut } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { options } from "../app/api/auth/[...nextauth]/options";
 
@@ -10,11 +9,6 @@ const Nav = async () => {
   const [toggleDropdown, setToggleDropdown] = useState(false);
 
   const session = await getServerSession(options);
-
-  const handleSignOut = async () => {
-    await signOut({ redirect: false });
-    router.push("/");
-  };
 
   //page shows logout first, however, the signIn doesn't seem to work the right way
   //it automatically logs me into my account that I have signed in google via OAuth 2 - it seems that my account is somehow saved, but no other things can be done
